@@ -24,8 +24,14 @@ const setTimer = duration => {
 
 async function trackUserHandler() { //callBack. with async the function wraps code into a promise and automatically returns a promise. internally then mechanisms are still performed
   // let positionData; // initiallizes variable for position data
-  const posData = await getPosition() // returns a promise. await waits  for the promise to resolve or fail 
-  const timerData = await setTimer(2000)
+  let posData;
+  let timerData;
+  try{
+    posData = await getPosition() // returns a promise. await waits  for the promise to resolve or fail 
+    timerData = await setTimer(2000)
+  } catch (error) {
+    console.log(error)
+  }
   console.log(timerData, posData)
     // .then(posData => { //posData received from getPosition resolve
     //   positionData = posData; //receives posData from getPosition
