@@ -52,6 +52,20 @@ async function trackUserHandler() { //callBack. with async the function wraps co
 
 button.addEventListener('click', trackUserHandler);
 
+// Promise.race([getPosition(), setTimer(1000)]).then(data => { // returns the result of the fatest promise
+//   console.log(data)
+// }) 
+
+// Promise.all([getPosition(), setTimer(1000)]).then(promiseData => { // returns an array of all promises on resolution of all. if one promise is rejected we just get an error
+//   console.log(promiseData)
+// })
+
+Promise.allSettled([getPosition(), setTimer(1000)]).then(promiseData => { // does not cancel the execution of other promisies if one is rejected and the others are resolved like Promise.all
+  console.log(promiseData)
+});
+
+
+
 // let result = 0;
 
 // for (i=0; i < 10000000; i++) {
